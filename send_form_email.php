@@ -35,10 +35,10 @@ if(isset($_POST['email'])) {
   }
  
     $string_exp = "/^[A-Za-z .'-]+$/";
- 
   if(!preg_match($string_exp,$first_name)) {
     $error_message .= 'The First Name you entered does not appear to be valid.<br />';
   }
+ 
  
  
   if(strlen($comments) < 2) {

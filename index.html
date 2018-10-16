@@ -20,7 +20,7 @@
     <style>
     .bg-1 h1 {font-family:'Mr De Haviland', sans-serif;
         font-size:85px;
-        color: #FFF;
+        color: #BCAAA4;
         margin-top:115px;
         }
     .bg-1 p {
@@ -46,7 +46,12 @@
 
     h3 {font-family:'Montserrat', serif;
         font-size:20px;
-        color: #C8F0FF;
+        color: #BCAAA4;
+    }
+    h4{
+        font-family:'Mr De Haviland',sans-serif;
+        font-size:25px;
+        color:#BCAAA4;
     }
 
     div.polaroid {
@@ -59,6 +64,33 @@
         margin-bottom: 15px;
         font-family: 'Nanum Myeongo', serif;
         }
+.fade {
+   opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   }
+
+   .fade:hover {
+      opacity: 0.5;
+      }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
 
     div.container {
         width:100%;
@@ -68,25 +100,48 @@
     .container h1{
     font-family:'Mr De Haviland', sans-serif;
         font-size:85px;
-        color: #FFF;
+        color: #BCAAA4;
         margin-top:115px;
         text-align:center;
     }
-
-
-
+    .abouttext {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 
     </style>
     <div class = "bg-1"  >
     <div class = "container text-center">
-        <!--<h1>J a n a v i  K u m a r</h1>-->
-        <h1> Under Maintainance... </h1>
-<!--        <iframe width="300" height="225" src="https://www.youtube.com/embed/uUvVCTwk1EI">
+        <h1>J a n a v i  K u m a r</h1>
+        <!--<h1> Under Maintainance... </h1>-->
+ <!---       <iframe width="300" height="225" src="https://www.youtube.com/embed/uUvVCTwk1EI">
         </iframe>
         <p> See More <a href = "dreamsonfilm.html" style = "color:#F7BDBD; font-style:italic;"<i>Dreams on Film</i></a></p>
+    -->
     </div>
-    </div>
+   <div class = "container text-center">
+        <a href="about.html"><img src="bio.jpg" title = "About" alt="Janavi" style="vertical-align:middle;" class ="fade"></a>
+        <div style="background-color:white; opacity:0.9;height:220px;width:520px;font:16px/26px Georgia, Garamond, Serif;overflow:auto; display:inline-block;vertical-align:middle;">
+<h4><i>h i g h l i g h t s</i>
+</h4>
+<div style="margin-bottom:7px">
+<a href = "https://www.independent.com/news/2018/oct/10/pollock-theater-presents-frankenstein-afterlives/" style = "color:#424242; font-family: 'IM Fell Great Primer SC', sans-serif;font-size:15px;">Article: F r a n k e n s t e i n - A f t e r l i v e s</a>
+</div>
+<div>
+<a href = "https://bit.ly/2rhACcL" style = "color:#424242; font-family: 'IM Fell Great Primer SC', sans-serif;font-size:13px;">Review: T h e  L o v e, T h e  L i g h t ,  a n d  t h e  L u l l a b y   o f  T h e  D a r k  K n i g h t</a>
+</div>
+<img src="vector.jpg" alt="vector" style="vertical-align:middle;" class ="fade">
+</div>
+
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -109,17 +164,15 @@
 </nav>
 
 <div style="font-family: 'Montserrat', serif; position: fixed; bottom: 0; right:0;font-size:10px;">
-    <a href="https://instagram.com/janavikumar" style="color: #BDE8F7">instagram</a>
+    <a href="https://instagram.com/janavikumar" style="color: #424242">instagram</a>
     &nbsp;
-    <a href="https://github.com/janavikumar" style = "color:#BDE8F7">github</a>
+    <a href="https://github.com/janavikumar" style = "color:#424242">github</a>
     &nbsp;
-    <a href="https://www.linkedin.com/in/janavi-kumar-017477107" style = "color:#BDE8F7">linkedin</a>
+    <a href="https://www.linkedin.com/in/janavi-kumar-017477107" style = "color:#424242">linkedin</a>
 </div>
 
-TAKE AWAY THIS COMMENT
--->
 <div class="copyright">
-<div style="font-family: 'IM Fell Great Primer SC', serif; position: fixed; bottom: 0; left:0;font-size:10px; color:#BDE8F7">
+<div style="font-family: 'IM Fell Great Primer SC', serif; position: fixed; bottom: 0; left:0;font-size:10px; color:#424242">
     © 2018 Janavi Kumar
 </div>
 </div>

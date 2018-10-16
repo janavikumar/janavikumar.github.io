@@ -1,5 +1,6 @@
 html{
-  background:url(bg5.jpg) no-repeat center center fixed;
+  /*background:url(bg5.jpg) no-repeat center center fixed;*/
+  background-color:#FDF2E9;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -8,6 +9,7 @@ html{
 
 body{
 background-color: transparent !important;
+opacity:0.95;
 }
 
 .container {

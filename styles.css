@@ -120,3 +120,9 @@ body{
       transform: translateY(0px);
       -webkit-transform: translateY(0px);
 }
+
+.aboutText{
+    margin-left: 30px;
+    margin-right: 20px;
+    font-family: 'Nanum Myeongjo', serif;
+}

@@ -1,10 +1,16 @@
 html{
   /*background:url(bg5.jpg) no-repeat center center fixed;*/
-  background-color:#FDF2E9;
+  background-color:#FFFFFF;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  -webkit-animation: fadein 1.5s;
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 body{
@@ -12,8 +18,36 @@ background-color: transparent !important;
 opacity:0.95;
 }
 
+#inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.link {
+    margin: 10px 10px 10px 10px;
+    color: #BCAAA4;
+    font-family: 'IM Fell Great Primer SC', sans-serif; 
+}
+
+.link:hover {
+    color: #8D817D;
+}
+
 .container {
-    padding: 80px 120px;
+    padding: 80px 100px;
+}
+
+.footer{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.icon-footer {
+    vertical-align:middle;
+    height: 20px; 
+    width: auto;
 }
 
 .person {

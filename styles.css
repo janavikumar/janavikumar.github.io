@@ -13,12 +13,34 @@ html{
     to   { opacity: 1; }
 }
 
-body{
-background-color: transparent !important;
-opacity:0.95;
+a{
+    text-decoration:none;
+    color: #BCAAA4;
 }
 
-#inner {
+a:focus, a:hover{
+    color: #8D817D;
+}
+
+body{
+    background-color: transparent !important;
+    opacity:0.95;
+}
+
+.container {
+    width:100%;
+}
+
+.container h1{
+    font-family:'Mr De Haviland', sans-serif;
+    font-size:7vw; /*used to be 85px*/
+    color: #BCAAA4;
+    margin-top:75px;
+    text-align:center;
+    text-decoration: none;
+}
+
+#innerNavbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -28,14 +50,11 @@ opacity:0.95;
     margin: 10px 10px 10px 10px;
     color: #BCAAA4;
     font-family: 'IM Fell Great Primer SC', sans-serif; 
+    text-decoration: none;
 }
 
 .link:hover {
     color: #8D817D;
-}
-
-.container {
-    padding: 80px 100px;
 }
 
 .footer{
@@ -50,14 +69,54 @@ opacity:0.95;
     width: auto;
 }
 
-.person {
-    border: 10px solid transparent;
-    margin-bottom: 25px;
-    width: 80%;
-    height: 80%;
-    opacity: 0.7;
+.aboutBio {
+      cursor: pointer;
+      height: 450px;
+      position: relative;
+      overflow: hidden;
+      width: auto;
+      text-align:center;
+      display: inline-flex;
+      vertical-align: middle;
 }
-.person:hover {
-    border-color: #f1f1f1;
+.aboutBio .fadedbox {
+      background-color: #666666;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+      -webkit-transition: all 300ms ease-out;
+      -moz-transition: all 300ms ease-out;
+      -o-transition: all 300ms ease-out;
+      -ms-transition: all 300ms ease-out;
+      transition: all 300ms ease-out;
+      opacity: 0;
+      width: -webkit-fill-available;
+      height: 459px;
+      padding: 130px 20px;
 }
-
+.aboutBio:hover .fadedbox { 
+    opacity: 0.5; 
+}
+.aboutBio .text {
+      -webkit-transition: all 300ms ease-out;
+      -moz-transition: all 300ms ease-out;
+      -o-transition: all 300ms ease-out;
+      -ms-transition: all 300ms ease-out;
+      transition: all 300ms ease-out;
+      transform: translateY(30px);
+      -webkit-transform: translateY(30px);
+}
+.aboutBio .title {
+      font-size: 2.5em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition-delay: 0.2s;
+      transition-duration: 0.3s;
+}
+.aboutBio:hover .title,
+.aboutBio:focus .title {
+      opacity: 1;
+      transform: translateY(0px);
+      -webkit-transform: translateY(0px);
+}

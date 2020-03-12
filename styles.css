@@ -121,7 +121,17 @@ body{
       -webkit-transform: translateY(0px);
 }
 
+.aboutPage{
+      height: 450px;
+      width: auto;
+      margin-top:20px;
+      margin-left: 30px;
+      display:inline-flex;
+      vertical-align: middle;
+}
+
 .aboutText{
+    margin-top: 20px;
     margin-left: 30px;
     margin-right: 20px;
     font-family: 'Nanum Myeongjo', serif;

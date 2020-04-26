@@ -1,34 +1,54 @@
-<?php
-$action=$_REQUEST['action'];
-if ($action=="") /** display the contact form */
-{
-?>
-<form action="" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="action" value="submit">
-Your name:<br>
-<input name="name" type="text" value="" size="30"/><br>
-Your email:<br>
-<input name="email" type="text" value="" size="30"/><br>
-Your message:<br>
-<textarea name="message" rows="7" cols="30"></textarea><br>
-<input type="submit" value="Send email"/>
-</form>
-<?php
-}
-else/* send the submitted data */
-}
-$name=$_REQUEST['name'];
-$email=$_REQUEST['email'];
-$message=$_REQUEST['message'];
-if (($name=="")||($email=="")||($message==""))
-{
-echo "All fields are required, please fill <a href=\"\">the form</a> again.";  
-}
-else
-$from="From: $name<$email>\r\nReturn-path: $email";
-$subject="Message sent using your contact form";
-mail("jnkumar11@gmail.com", $subject, $message, $from);
-echo "Email sent!";
-}
-}
-?>
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127644891-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-127644891-1');
+</script>
+  <title>Janavi Kumar | ABOUT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel ="stylesheet" type = "text/css" href = "styles.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|IM+Fell+Great+Primer+SC|Jacques+Francois" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Allura|Homemade+Apple|Montserrat|Mr+De+Haviland|Open+Sans|Raleway|Nanum+Myeongjo" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="jstyles.js"></script>
+</head>
+
+<body>
+
+<div class = "bg-1"  >
+        <div class = "container text-center">
+        <h1><a href="index.html" style="text-decoration:none">Janavi Kumar</a></h1>
+        <div id = "navbar">
+            <div id = "innerNavbar">
+                <a href="about.html" class="link" style="text-decoration:none; color:#8D817D">ABOUT</a>
+                <a href="writings.html" class="link" style="text-decoration:none">WRITING</a>
+                <a href="contact.html" class="link" style="text-decoration:none; font-weight:bold" >CONTACT</a>
+            </div>
+        <div/>
+        </div>
+</div>
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfq-UCPtW5mAvYKbVc9n2Nl0TiE9NMHxyLVaqcXZlrRteFQvg/viewform?embedded=true" width="650px" height="650px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+<div class="copyright">
+<div style="font-family: 'IM Fell Great Primer SC', serif; position: fixed; bottom: 0; left:0;font-size:10px; color:#424242">
+    © 2018 Janavi Kumar
+</div>
+
+</script>
+</body>
+
+</html>

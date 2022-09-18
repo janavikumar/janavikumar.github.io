@@ -1,5 +1,5 @@
 html{
-  background-color:#FFFFFF;
+  background-color:#000000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -14,11 +14,11 @@ html{
 
 a{
     text-decoration:none;
-    color: #BCAAA4;
+    color: #FFFFFF;
 }
 
 a:focus, a:hover{
-    color: #8D817D;
+    color: #FFFFFF;
 }
 
 body{
@@ -26,17 +26,42 @@ body{
     opacity:0.95;
 }
 
+.header {
+	font-family: 'Amiri', serif;
+	color: #FFFFFF;
+	display: flex;
+	margin: 10px;
+	justify-content: space-between;
+}
+
+.name {
+	font-size: 3vw;
+	color: #FFFFFF;
+}
+
+.links {
+	font-size: 1.5vw;
+}
+
 .container {
     width:100%;
 }
 
 .container h1{
-    font-family:'Mr De Haviland', sans-serif;
-    font-size:7vw; /*used to be 85px*/
-    color: #BCAAA4;
-    margin-top:75px;
-    text-align:center;
+    font-family:'Amiri', serif;
+    font-size:2vw;
+    color: #FFFFFF;
+    margin:7% 20% 20% 20%;
+    text-align:left;
     text-decoration: none;
+}
+
+.container h2{
+    font-family: 'Amiri', serif;
+    font-size: 1.25vw;
+    color: #FFFFFF;
+    margin: -19% 20% 5% 20%;
+    text-align: left;
 }
 
 #innerNavbar {
@@ -45,79 +70,51 @@ body{
     justify-content: center;
 }
 
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; color: #808080; }
+
+
+a:active { text-decoration: none; }
+
+
+
 .link {
     margin: 10px 10px 10px 10px;
-    color: #BCAAA4;
-    font-family: 'IM Fell Great Primer SC', sans-serif; 
+    color: #FFFFFF;
+    font-family: 'Amiri', serif; 
     text-decoration: none;
 }
 
 .link:hover {
-    color: #8D817D;
+    color: #808080;
+    text-decoration: none;
 }
 
-.footer{
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 20px;
-}
 
-.icon-footer {
-    vertical-align:middle;
-    height: 20px; 
-    width: auto;
-}
-
-.aboutBio {
+.mainContent {
       cursor: pointer;
-      position: relative;
       overflow: hidden;
-      width: auto;
-      text-align:center;
-      display: inline-flex;
-      vertical-align: middle;
+      position: relative;
+      display: -webkit-box;
       -webkit-animation: fadein 1.5s;
 }
-.aboutBio .fadedbox {
-      background-color: #666666;
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: #fff;
-      -webkit-transition: all 300ms ease-out;
-      -moz-transition: all 300ms ease-out;
-      -o-transition: all 300ms ease-out;
-      -ms-transition: all 300ms ease-out;
-      transition: all 300ms ease-out;
-      opacity: 0;
-      width: -webkit-fill-available;
-      height: 459px;
-      padding: 130px 20px;
+
+.bio {
+	display: grid;
+	color: #FFFFFF;
+	font-family: 'Amiri', serif;
+	text-align: -webkit-right;
 }
-.aboutBio:hover .fadedbox { 
-    opacity: 0.5; 
-}
-.aboutBio .text {
-      -webkit-transition: all 300ms ease-out;
-      -moz-transition: all 300ms ease-out;
-      -o-transition: all 300ms ease-out;
-      -ms-transition: all 300ms ease-out;
-      transition: all 300ms ease-out;
-      transform: translateY(30px);
-      -webkit-transform: translateY(30px);
-}
-.aboutBio .title {
-      font-size: 2.5em;
-      text-transform: uppercase;
-      opacity: 0;
-      transition-delay: 0.2s;
-      transition-duration: 0.3s;
-}
-.aboutBio:hover .title,
-.aboutBio:focus .title {
-      opacity: 1;
-      transform: translateY(0px);
-      -webkit-transform: translateY(0px);
+
+.slide {
+	height: 50%;
+	width: 50%;
+	margin: auto;
 }
 
 .aboutPage{
@@ -135,7 +132,7 @@ body{
     margin-left: 30px;
     margin-right: 20px;
     width: 45%;
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Amiri', serif;
 }
 
 .writingIcon {
@@ -156,9 +153,249 @@ body{
 }
 
 .collapse{
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Amiri', serif;
 }
 
 .collapse.in{
     display: grid;
+}
+
+.footer{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.icon-footer {
+    vertical-align:middle;
+    color: #FFFFFF;
+    height: 20px; 
+    width: auto;
+}
+
+
+@keyframes tonext {
+  75% {
+    left: 0;
+  }
+  95% {
+    left: 100%;
+  }
+  98% {
+    left: 100%;
+  }
+  99% {
+    left: 0;
+  }
+}
+
+@keyframes tostart {
+  75% {
+    left: 0;
+  }
+  95% {
+    left: -300%;
+  }
+  98% {
+    left: -300%;
+  }
+  99% {
+    left: 0;
+  }
+}
+
+@keyframes snap {
+  96% {
+    scroll-snap-align: center;
+  }
+  97% {
+    scroll-snap-align: none;
+  }
+  99% {
+    scroll-snap-align: none;
+  }
+  100% {
+    scroll-snap-align: center;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: transparent transparent; /* thumb and track color */
+  scrollbar-width: 0px;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+ol, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  position: relative;
+  padding-top: 55%;
+  filter: drop-shadow(0 0 10px #0003);
+}
+
+.carousel__viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.carousel__slide:nth-child(even) {
+  background-color: #99f;
+}
+
+.carousel__slide:before {
+  background-image:  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-40%,70px);
+  color: #fff;
+  font-size: 2em;
+}
+
+.carousel__snapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+@media (hover: hover) {
+  .carousel__snapper {
+    animation-name: tonext, snap;
+    animation-timing-function: ease;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+
+  .carousel__slide:last-child .carousel__snapper {
+    animation-name: tostart, snap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__snapper {
+    animation-name: none;
+  }
+}
+
+.carousel:hover .carousel__snapper,
+.carousel:focus-within .carousel__snapper {
+  animation-name: none;
+}
+
+.carousel__navigation {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.carousel__navigation-list,
+.carousel__navigation-item {
+  display: inline-block;
+}
+
+.carousel__navigation-button {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #333;
+  background-clip: content-box;
+  border: 0.25rem solid transparent;
+  border-radius: 50%;
+  font-size: 0;
+  transition: transform 0.1s;
+}
+
+.carousel::before,
+.carousel::after,
+.carousel__prev,
+.carousel__next {
+  position: absolute;
+  top: 0;
+  margin-top: 37.5%;
+  width: 4rem;
+  height: 4rem;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  font-size: 0;
+  outline: 0;
+}
+
+.carousel::before,
+.carousel__prev {
+  left: -1rem;
+}
+
+.carousel::after,
+.carousel__next {
+  right: -1rem;
+}
+
+.carousel::before,
+.carousel::after {
+  content: '';
+  z-index: 1;
+  background-color: #333;
+  background-size: 1.5rem 1.5rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.carousel::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.carousel::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+.centered {
+  color: #FFFFFF;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slide {
+  margin-left: 50px;
 }

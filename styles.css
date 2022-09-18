@@ -399,3 +399,11 @@ ol, li {
 .slide {
   margin-left: 50px;
 }
+
+.captionlink {
+  color: #808080;
+}
+
+.captionlink:hover {
+  color: #FFFFFF;
+}

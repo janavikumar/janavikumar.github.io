@@ -29,7 +29,7 @@ nav {
 }
 
 nav a {
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
     margin: 0 15px;
     text-decoration: none;
     font-size: 18px;
@@ -50,7 +50,7 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
     text-align: left;
     position: relative;
 }
@@ -68,7 +68,7 @@ nav a:hover {
 }
 
 .fade-in h1 {
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
     font-size: 5em;
     margin-bottom: 10px;
 }
@@ -103,13 +103,14 @@ nav a:hover {
 
 .portfoliocontent a:link {
     text-decoration: none;
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
     margin: 40px;
 }
 
 .contact {
     padding: 100px 20px;
     text-align: center;
+    color: rgb(0, 51, 43)
 }
 
 .contact h1 {
@@ -129,17 +130,17 @@ a:hover {
 
 a:link {
     text-decoration: none;
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
 }
 
 a:visited {
     text-decoration: none;
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
 }
 
 a:active {
     text-decoration: none;
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
 }
 
 /* Footer Styling */
@@ -153,7 +154,7 @@ footer {
 }
 
 footer a {
-    color: rgb(8, 55, 31);
+    color: rgb(0, 51, 43);
     text-decoration: none;
     margin: 0 10px;
     font-size: 18px;

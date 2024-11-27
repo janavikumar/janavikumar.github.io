@@ -1,0 +1,4 @@
+[submodule "emergency"]
+	path = emergency
+	url = https://github.com/janavikumar/emergencyemergency.git
+	branch = main

@@ -1,0 +1,3 @@
+[submodule "emergency"]
+    path = emergency
+    url = https://github.com/username/emergencyemergency.git

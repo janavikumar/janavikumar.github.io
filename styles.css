@@ -16,6 +16,18 @@ main {
     flex: 1; /* Fills the remaining space above the footer */
 }
 
+/* Image styling */
+.profimage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%; /* Make the image take up half of the screen width */
+    height: 95%; /* Make it cover the full height of the viewport */
+    object-fit: cover; /* Ensure it covers the space without distortion */
+    z-index: -10; /* Position it behind the text */
+    opacity: .55;
+}
+
 /* Navigation Bar */
 nav {
     display: flex;
@@ -69,20 +81,22 @@ nav a:hover {
 
 .fade-in h1 {
     color: rgb(0, 51, 43);
-    font-size: 5em;
+    font-size: 5.3em;
     margin-bottom: 10px;
 }
 
 .fade-in p {
-    font-size: 1.5em;
+    font-size: 1.6em;
 }
 
 .fade-in p1 {
-    font-size: 1.2em;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 .fade-in p2 {
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 /* Subpage Content */

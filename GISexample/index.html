@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIS MAPS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <h1 class="page-title">GIS Maps</h1>
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="pdfs/Lead1.jpg" alt="Image 1" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Lead2.jpg" alt="Image 2" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Lead3.jpg"  alt="Image 3" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Subway1.jpg" alt="Image 4" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Subway2.jpg" alt="Image 5" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Subway3.jpg" alt="Image 6" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Katrina.jpg" alt="Image 7" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Poverty1.jpg" alt="Image 8" onclick="enlargeImage(this)">
+            </div>
+            <div class="grid-item">
+                <img src="pdfs/Poverty2.jpg" alt="Image 9" onclick="enlargeImage(this)">
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal to show the enlarged image -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">×</span>
+        <img id="modal-img" class="modal-content" src="">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

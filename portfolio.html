@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to show a popup and prevent navigation
+        function restrictedAccess(event) {
+            event.preventDefault(); // Prevents the default link action
+            alert("You need special access to view this page.");
+        }
+    </script>
 </head>
 
 <body>
@@ -19,7 +26,7 @@
             <div class="portfoliocontent">
                 <h1>selected works</h1>
                 <p><a href="emergency/index.html" target="_blank">Emergency, Emergency! Paging Dr. America!</a></p>
-                <p><a href="ruckerpark/index.html" target="_blank">Rucker Park: From Streetball Jewel to National Treasure</a></p>
+                <p><a href="ruckerpark/index.html" target="_blank" onclick="restrictedAccess(event)">Rucker Park: From Streetball Jewel to National Treasure</a></p>
                 <p><a href="GISexample/index.html" target="_blank">GIS Mappings</a></p>
                 <p><a href="https://muckrack.com/janavi-kumar/articles" target="_blank">Arts & Entertainment Interviews</a></p>
             </div>

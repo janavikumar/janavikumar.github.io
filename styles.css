@@ -121,22 +121,6 @@ nav a:hover {
     margin: 40px;
 }
 
-.contact {
-    padding: 100px 20px;
-    text-align: center;
-    color: rgb(0, 51, 43)
-}
-
-.contact h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.contact p {
-    font-size: 1.2em;
-    line-height: 1.6;
-}
-
 a:hover {
     font-weight: bold;
     text-decoration: underline;
@@ -205,6 +189,7 @@ footer a:hover {
     font-size: 0.6em;
     color: rgb(0, 51, 43);
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .portfolio-links a:hover {
@@ -220,4 +205,10 @@ footer a:hover {
 
 .portfolio-trigger:hover {
     text-decoration: underline;
+}
+
+.contact {
+    display: block;
+    margin-top: 30px; 
+    font-size: 0.8em !important;
 }

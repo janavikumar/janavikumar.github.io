@@ -68,7 +68,7 @@ nav a:hover {
 }
 
 .fade-in {
-    animation: fadeIn 2s ease-in;
+    animation: fadeIn 1s ease-in;
 }
 @keyframes fadeIn {
     from {
@@ -177,4 +177,47 @@ footer a {
 
 footer a:hover {
     font-weight:bold;
+}
+
+.portfolio-links {
+    display: none;
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    text-align: right;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 300px;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.portfolio-links.fade-in {
+    opacity: 1;
+}
+
+.portfolio-links p {
+    margin: 10px 0;
+}
+
+.portfolio-links a {
+    font-size: 0.6em;
+    color: rgb(0, 51, 43);
+    text-decoration: none;
+}
+
+.portfolio-links a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.portfolio-trigger {
+    cursor: pointer;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.portfolio-trigger:hover {
+    text-decoration: underline;
 }

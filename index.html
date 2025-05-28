@@ -7,22 +7,25 @@
     <title>Janavi | Homepage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <main>
         <div class="landing">
-            <nav>
-                <a href="portfolio.html">portfolio</a>
-                <a href="index.html">home</a>
-                <a href="contact.html">contact</a>
-            </nav>
             <div class="fade-in">
                 <img src="prof.jpg" alt="portrait" class="profimage">
-                <h1>janavi</h1>
-                <p>data visualizations + freelance journalism</p>
-                <p1>based in the bay area + new york city</p1>
-                <div class="descrip">
-                    <p2><a href="portfolio.html">selected works + portfolio</a></p2>
+                <div id="homeContent">
+                    <h1>janavi</h1>
+                    <p>data visualizations + freelance journalism</p>
+                    <p1>based in the bay area + new york city</p1>
+                    <div class="descrip">
+                        <p2 class="portfolio-trigger" onclick="togglePortfolio()" style="cursor:pointer;">selected works + portfolio</p2>
+                    </div>
+                </div>
+                
+                <div class="portfolio-links fade-in" id="portfolioLinks">
+                    <p><a href="https://indypendent.org/2025/03/rucker-park-from-streetball-jewel-to-national-treasure/" target="_blank">Rucker Park: From Streetball Jewel to National Treasure</a></p>
+                    <p><a href="https://censorship.streamlit.app/" target="_blank">Data Visualization: Censorship in America</a></p>
+                    <p><a href="https://muckrack.com/janavi-kumar/articles" target="_blank">Arts & Entertainment Interviews</a></p>
+                    <p style="margin-top: 30px;"><span onclick="toggleHome()" style="cursor:pointer; text-decoration:underline; font-size: 0.5em;">&larr; return to home</span></p>
                 </div>
             </div>
         </div>
@@ -31,6 +34,28 @@
         <a href="https://www.instagram.com/jjjanaviii" target="_blank" rel="noopener">instagram</a> |
         <a href="https://www.linkedin.com/in/janavikumar/" target="_blank" rel="noopener">linkedin</a>
     </footer>
+    <script>
+        function togglePortfolio() {
+            document.getElementById('homeContent').style.display = 'none';
+            const links = document.getElementById('portfolioLinks');
+            links.style.display = 'block';
+            links.classList.add('fade-in');
+        }
+
+        function toggleHome() {
+            // Hide portfolio
+            const links = document.getElementById('portfolioLinks');
+            links.style.display = 'none';
+            links.classList.remove('fade-in');
+
+            // Show and fade in home content
+            const home = document.getElementById('homeContent');
+            home.style.display = 'block';
+            home.classList.remove('fade-in'); // reset if it was applied before
+            void home.offsetWidth; // force reflow to re-trigger animation
+            home.classList.add('fade-in');
+        }
+    </script>
 </body>
 
 </html>

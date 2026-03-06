@@ -1,63 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Janavi | Homepage</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Janavi Kumar</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --serif: 'Georgia', 'Times New Roman', serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+      --bg: #f5f2ee;
+      --ink: #1a1a1a;
+      --muted: #888;
+    }
+    html, body { min-height: 100vh; background: var(--bg); color: var(--ink); font-family: var(--serif); overflow-x: hidden; }
+
+    /* ── fixed nav ── */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; padding: 22px 40px; background: var(--bg); border-bottom: 1px solid #e8e3de; }
+    .site-nav a { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color 0.2s; }
+    .site-nav a:hover { color: var(--ink); }
+    .nav-name { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-family: var(--serif); font-size: 0.95rem; color: var(--ink); cursor: pointer; }
+    .nav-name:hover { opacity: 0.7; }
+
+    /* ── fixed footer ── */
+    .site-footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 12px 24px; background: var(--bg); border-top: 1px solid #e8e3de; font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--muted); }
+    .footer-social { position: absolute; right: 24px; display: flex; gap: 14px; align-items: center; }
+    .footer-social a { color: var(--muted); transition: color 0.2s; display: flex; }
+    .footer-social a:hover { color: var(--ink); }
+
+    #page-home { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 120px 40px 80px; gap: 52px; }
+    .home-center { text-align: center; }
+    .home-name { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: normal; letter-spacing: 0.14em; line-height: 1.1; margin-bottom: 0.45em; }
+    .home-title { font-family: var(--sans); font-size: clamp(0.65rem, 1.2vw, 0.82rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+    .mosaic { display: grid; grid-template-columns: 0.8fr 1.3fr 1fr; grid-template-rows: 170px 140px 140px 180px; gap: 10px; width: 100%; max-width: 680px; }
+    .card-works      { grid-column: 1 / 3; grid-row: 1; }
+    .card-journalism { grid-column: 3;     grid-row: 1 / 4; }
+    .card-about      { grid-column: 1;     grid-row: 2 / 4; }
+    .card-data       { grid-column: 2;     grid-row: 2 / 4; }
+    .card-creative   { grid-column: 1 / 4; grid-row: 4; }
+    .img-card { cursor: pointer; position: relative; overflow: hidden; }
+    .img-fill { width: 100%; height: 100%; display: block; object-fit: cover; transition: filter 0.2s ease; }
+    .img-card:hover .img-fill { filter: brightness(0.82); }
+    .card-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; opacity: 0; transition: opacity 0.2s ease; }
+    .img-card:hover .card-label { opacity: 1; }
+
+    .inner-page { display: none; min-height: 100vh; padding-top: 58px; }
+    .inner-page.active { display: block; }
+    .page-content { max-width: 760px; margin: 0 auto; padding: 64px 40px 120px; animation: fadeUp 0.35s ease; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+    .page-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: normal; letter-spacing: 0.04em; margin-bottom: 48px; }
+    .bio-text { font-size: 1.1rem; line-height: 1.85; color: #222; }
+    .bio-text p + p { margin-top: 1.2em; }
+    .bio-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .work-list { list-style: none; border-top: 1px solid #ddd; }
+    .work-item { border-bottom: 1px solid #ddd; padding: 20px 0; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: baseline; }
+    .work-item a { text-decoration: none; color: var(--ink); font-size: 1rem; line-height: 1.5; }
+    .work-item a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .work-meta { font-family: var(--sans); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+    .work-cat { display: inline-block; font-family: var(--sans); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: #e8e2db; color: #666; padding: 2px 8px; border-radius: 2px; margin-bottom: 6px;margin-right: 8px; }
+    .sub-heading { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin: 48px 0 20px; padding-bottom: 8px; border-bottom: 1px solid #ddd; }
+
+    @media (max-width: 560px) {
+      #page-home { padding: 100px 20px 80px; gap: 36px; }
+      .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 140px 140px 130px; }
+      .card-about      { grid-column: 1 / 3; grid-row: 1; }
+      .card-journalism { grid-column: 2;     grid-row: 2; }
+      .card-data       { grid-column: 1;     grid-row: 2; }
+      .card-creative   { grid-column: 1;     grid-row: 3; }
+      .card-works      { grid-column: 2;     grid-row: 3; }
+      .page-content { padding: 40px 20px 80px; }
+      .work-item { grid-template-columns: 1fr; gap: 4px; }
+      .site-nav { gap: 16px; padding: 12px 20px; }
+      .nav-name { display: none; }
+      .about-layout { flex-direction: column !important; }
+      .about-layout img { width: 100% !important; }
+      .footer-social { position: static; margin-left: 16px; }
+      .site-footer { justify-content: center; gap: 12px; }
+    }
+  </style>
 </head>
 <body>
-    <main>
-        <div class="landing">
-            <div class="fade-in">
-                <img src="prof.jpg" alt="portrait" class="profimage">
-                <div id="homeContent">
-                    <h1>janavi</h1>
-                    <p>data visualizations + freelance journalism</p>
-                    <p1>based in the bay area + new york city</p1>
-                    <div class="descrip">
-                        <p2 class="portfolio-trigger" onclick="togglePortfolio()" style="cursor:pointer;">selected works + portfolio</p2>
-                    </div>
-                    <p2 class="contact">contact: janavi.kumar@columbia.edu</p2>
-                </div>
-                
-                <div class="portfolio-links fade-in" id="portfolioLinks">
-<p><a href="https://documentedny.com/2025/12/28/guinea-coup-political-persecution/" target="_blank">From Guinea's Repression to America's Reality</a></p>                    
-<p><a href="https://indypendent.org/2025/03/rucker-park-from-streetball-jewel-to-national-treasure/" target="_blank">Rucker Park: From Streetball Jewel to National Treasure</a></p>
-                    <p><a href="https://censorship.streamlit.app/" target="_blank">Data Visualization: Censorship in America</a></p>
-                    <p><a href="https://muckrack.com/janavi-kumar/articles" target="_blank">Arts & Entertainment Interviews</a></p>
-                    <p style="margin-top: 30px;"><span onclick="toggleHome()" style="cursor:pointer; text-decoration:underline; font-size: 0.5em;">&larr; return to home</span></p>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <a href="https://www.instagram.com/jjjanaviii" target="_blank" rel="noopener">instagram</a> |
-        <a href="https://www.linkedin.com/in/janavikumar/" target="_blank" rel="noopener">linkedin</a>
-    </footer>
-    <script>
-        function togglePortfolio() {
-            document.getElementById('homeContent').style.display = 'none';
-            const links = document.getElementById('portfolioLinks');
-            links.style.display = 'block';
-            links.classList.add('fade-in');
-        }
 
-        function toggleHome() {
-            // Hide portfolio
-            const links = document.getElementById('portfolioLinks');
-            links.style.display = 'none';
-            links.classList.remove('fade-in');
+<!-- ALWAYS-VISIBLE NAV -->
+<nav class="site-nav">
+  <a href="#" id="nav-home-link" onclick="showPage('home'); return false;" style="display:none;">Home</a>
+  <a href="#" onclick="showPage('about'); return false;">About</a>
+  <a href="#" onclick="showPage('journalism'); return false;">Journalism & Writing</a>
+  <a href="#" onclick="showPage('data'); return false;">Data Work</a>
+  <a href="#" onclick="showPage('works'); return false;">All Works</a>
+  <a href="#" onclick="showPage('contact'); return false;">Contact</a>
+  <span class="nav-name" id="nav-name" onclick="showPage('home')" style="display:none;">Janavi Kumar</span>
+</nav>
 
-            // Show and fade in home content
-            const home = document.getElementById('homeContent');
-            home.style.display = 'block';
-            home.classList.remove('fade-in'); // reset if it was applied before
-            void home.offsetWidth; // force reflow to re-trigger animation
-            home.classList.add('fade-in');
-        }
-    </script>
+<!-- HOME -->
+<div id="page-home">
+  <div class="home-center">
+    <div class="home-name">Janavi&nbsp;&nbsp;Kumar</div>
+    <div class="home-title">Data Analyst &nbsp;/&nbsp; Freelance Journalist</div>
+  </div>
+
+  <div class="mosaic">
+    <div class="img-card card-works" onclick="showPage('works')">
+      <img class="img-fill" src="all.jpg" alt="All Works">
+      <div class="card-label">All Works</div>
+    </div>
+    <div class="img-card card-journalism" onclick="showPage('journalism')">
+      <img class="img-fill" src="journalism.jpg" alt="Journalism & Writing">
+      <div class="card-label">Journalism & Writing</div>
+    </div>
+    <div class="img-card card-about" onclick="showPage('about')">
+      <img class="img-fill" src="about.jpg" alt="About">
+      <div class="card-label">About</div>
+    </div>
+    <div class="img-card card-data" onclick="showPage('data')">
+      <img class="img-fill" src="data.jpg" alt="Data Work">
+      <div class="card-label">Data Work</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="inner-page">
+  <div class="page-content">
+    <h1 class="page-heading">Contact</h1>
+    <div class="bio-text">
+      <p>For any inquiries, tips, or commissions: <a href="mailto:janavikumar@proton.me">janavikumar@proton.me</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="inner-page">
+  <div class="page-content">
+    <h1 class="page-heading">About</h1>
+    <div class="about-layout" style="display:flex; gap:48px; align-items:flex-start;">
+      <img src="aboutpage.jpg" alt="Janavi Kumar" style="flex-shrink:0; width:220px; height:auto; display:block;">
+      <div class="bio-text">
+        <p>I am a data analyst and freelance journalist based in New York City, focusing on climate, migration, and social justice issues.</p>
+        <p>I have contributed to <a href="https://documentedny.com" target="_blank">Documented</a>, <a href="https://indypendent.org" target="_blank">The Indypendent</a>, and <a href="https://independent.com" target="_blank">The Santa Barbara Independent</a>.</p>
+        <p>Previously, I was a Research Assistant at the Columbia Climate School and am currently a senior data analyst for policy research at the New York City Department of Finance.</p>
+        <p>Reach me at <a href="mailto:janavikumar@proton.me">janavikumar@proton.me</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- JOURNALISM & WRITING -->
+<div id="page-journalism" class="inner-page">
+  <div class="page-content">
+    <h1 class="page-heading">Journalism & Writing</h1>
+    <ul class="work-list">
+      <li class="work-item">
+        <div><div class="work-cat">Reporting</div><a href="https://documentedny.com/2025/12/28/guinea-coup-political-persecution/" target="_blank">From Guinea's Repression to America's Reality</a></div>
+        <span class="work-meta">Documented · 2025</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Feature</div><a href="https://indypendent.org/2025/03/rucker-park-from-streetball-jewel-to-national-treasure/" target="_blank">Rucker Park: From Streetball Jewel to National Treasure</a></div>
+        <span class="work-meta">The Indypendent · 2025</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- DATA WORK -->
+<div id="page-data" class="inner-page">
+  <div class="page-content">
+    <h1 class="page-heading">Data Work</h1>
+    <div class="bio-text" style="margin-bottom:40px;">
+      <p>A selection of data journalism, visualizations, and research projects. Tools include Python, R, SQL, and D3.js.</p>
+    </div>
+    <ul class="work-list">
+      <li class="work-item">
+        <div><div class="work-cat">Visualization</div><a href="https://censorship.streamlit.app/" target="_blank">REDACTED: A Look at Censorship in Modern America</a></div>
+        <span class="work-meta">Self Published · 2025</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Research</div><a href="https://www.researchsquare.com/article/rs-7812038/v1?utm_source=researchgate.net&utm_medium=article" target="_blank">El Niño Amplified Food Insecurity in Early Modern Europe</a></div>
+        <span class="work-meta">Under Review · 2026</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Data Journalism</div><a href="#" target="_blank">UNHCR Refugee Movement</a></div>
+        <span class="work-meta">Self Published · 2026</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- CREATIVE WRITING -->
+<div id="page-creative" class="inner-page">
+  <div class="page-content">
+    <h1 class="page-heading">Creative Writing</h1>
+    <ul class="work-list">
+      <li class="work-item">
+        <div><div class="work-cat">Fiction</div><a href="#" target="_blank">Story Title One — A short story about memory and place</a></div>
+        <span class="work-meta">Journal · 2024</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Essay</div><a href="#" target="_blank">Essay Title Two — On the nature of belonging</a></div>
+        <span class="work-meta">Magazine · 2024</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Poetry</div><a href="#" target="_blank">Poem Title Three — From a collection in progress</a></div>
+        <span class="work-meta">Literary Review · 2023</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ALL WORKS -->
+<div id="page-works" class="inner-page">
+  <div class="page-content">
+    <h1 class="page-heading">All Works</h1>
+    <ul class="work-list">
+      <li class="work-item">
+        <div><div class="work-cat">Data Journalism</div><a href="#" target="_blank">UNHCR Refugee Movement</a></div>
+        <span class="work-meta">Self Published · 2026</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Reporting</div><a href="https://documentedny.com/2025/12/28/guinea-coup-political-persecution/" target="_blank">From Guinea's Repression to America's Reality</a></div>
+        <span class="work-meta">Documented · 2025</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Feature</div><a href="https://indypendent.org/2025/03/rucker-park-from-streetball-jewel-to-national-treasure/" target="_blank">Rucker Park: From Streetball Jewel to National Treasure</a></div>
+        <span class="work-meta">The Indypendent · 2025</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Visualization</div><a href="https://censorship.streamlit.app/" target="_blank">REDACTED: A Look at Censorship in Modern America</a></div>
+        <span class="work-meta">Self Published · 2025</span>
+      </li>
+      <li class="work-item">
+        <div><div class="work-cat">Research</div><a href="https://www.researchsquare.com/article/rs-7812038/v1?utm_source=researchgate.net&utm_medium=article" target="_blank">El Niño Amplified Food Insecurity in Early Modern Europe</a></div>
+        <span class="work-meta">Under Review · 2026</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- FIXED FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Janavi Kumar</span>
+  <div class="footer-social">
+    <a href="https://github.com/janavikumar" target="_blank" aria-label="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+    </a>
+    <a href="https://linkedin.com/in/janavikumar" target="_blank" aria-label="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    </a>
+    <a href="https://instagram.com/jjjanaviii" target="_blank" aria-label="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+
+<script>
+  function showPage(name) {
+    document.getElementById('page-home').style.display = 'none';
+    document.querySelectorAll('.inner-page').forEach(p => p.classList.remove('active'));
+    const onHome = name === 'home';
+    document.getElementById('nav-home-link').style.display = onHome ? 'none' : '';
+    document.getElementById('nav-name').style.display = onHome ? 'none' : '';
+    if (onHome) {
+      document.getElementById('page-home').style.display = '';
+    } else {
+      const t = document.getElementById('page-' + name);
+      if (t) t.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 </body>
-
 </html>

@@ -88,13 +88,13 @@
 
 <!-- ALWAYS-VISIBLE NAV -->
 <nav class="site-nav">
-  <a href="#" id="nav-home-link" onclick="showPage('home'); return false;" style="display:none;">Home</a>
+  <a href="#" id="nav-home-link" onclick="showPage('home'); return false;">Home</a>
   <a href="#" onclick="showPage('about'); return false;">About</a>
   <a href="#" onclick="showPage('journalism'); return false;">Journalism & Writing</a>
   <a href="#" onclick="showPage('data'); return false;">Data Work</a>
   <a href="#" onclick="showPage('works'); return false;">All Works</a>
   <a href="#" onclick="showPage('contact'); return false;">Contact</a>
-  <span class="nav-name" id="nav-name" onclick="showPage('home')" style="display:none;">Janavi Kumar</span>
+  <span class="nav-name" id="nav-name" onclick="showPage('home')">Janavi Kumar</span>
 </nav>
 
 <!-- HOME -->
@@ -281,10 +281,7 @@
   function showPage(name) {
     document.getElementById('page-home').style.display = 'none';
     document.querySelectorAll('.inner-page').forEach(p => p.classList.remove('active'));
-    const onHome = name === 'home';
-    document.getElementById('nav-home-link').style.display = onHome ? 'none' : '';
-    document.getElementById('nav-name').style.display = onHome ? 'none' : '';
-    if (onHome) {
+    if (name === 'home') {
       document.getElementById('page-home').style.display = '';
     } else {
       const t = document.getElementById('page-' + name);

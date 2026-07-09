@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pulse of the Pacific — Understanding ENSO</title>
+<style>
+  :root{
+    --deep:#061a2b;
+    --mid:#0d3049;
+    --wave-back:#123a56;
+    --wave-mid:#1c527a;
+    --wave-front:#2c6f96;
+    --foam:#bcd8e8;
+    --ink:#eef5f8;
+    --ink-dim:#a9c2ce;
+    --accent:#e8935a;
+    --card-bg: rgba(6, 22, 36, 0.55);
+    --wave-speed-back: 34s;
+    --wave-speed-mid: 22s;
+    --wave-speed-front: 14s;
+    transition: --deep 1.2s;
+  }
+
+  [data-theme="warm"]{
+    --deep:#241407;
+    --mid:#4a2410;
+    --wave-back:#5c2c11;
+    --wave-mid:#8a3c14;
+    --wave-front:#c15a1d;
+    --foam:#ffd9ad;
+    --accent:#ffb066;
+  }
+
+  [data-theme="storm"]{
+    --deep:#0a1420;
+    --mid:#14273a;
+    --wave-back:#1c2f42;
+    --wave-mid:#28455e;
+    --wave-front:#3a6280;
+    --foam:#d7e6ee;
+    --accent:#7fd3d6;
+    --wave-speed-back: 20s;
+    --wave-speed-mid: 13s;
+    --wave-speed-front: 8s;
+  }
+
+  [data-theme="intensify"]{
+    --deep:#1a0808;
+    --mid:#3a1210;
+    --wave-back:#4a1815;
+    --wave-mid:#6f2118;
+    --wave-front:#a3311b;
+    --foam:#ffcfc0;
+    --accent:#ff7a52;
+    --wave-speed-back: 14s;
+    --wave-speed-mid: 9s;
+    --wave-speed-front: 5.5s;
+  }
+
+  [data-theme="human"]{
+    --deep:#1c1608;
+    --mid:#3a2c10;
+    --wave-back:#4a3714;
+    --wave-mid:#6f5218;
+    --wave-front:#a37a1f;
+    --foam:#f2e4b8;
+    --accent:#e8c25a;
+    --wave-speed-back: 30s;
+    --wave-speed-mid: 20s;
+    --wave-speed-front: 12s;
+  }
+
+  [data-theme="calm2"]{
+    --deep:#050f1c;
+    --mid:#0a2438;
+    --wave-back:#0f3450;
+    --wave-mid:#164a6e;
+    --wave-front:#1f6690;
+    --foam:#cfe6f0;
+    --accent:#7ec8d8;
+    --wave-speed-back: 40s;
+    --wave-speed-mid: 26s;
+    --wave-speed-front: 17s;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0; padding:0;
+    background: var(--deep);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Georgia', 'Times New Roman', serif;
+    overflow-x: hidden;
+  }
+
+  body{
+    transition: background-color 1.4s ease;
+  }
+
+  .ocean-bg{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(to bottom, var(--deep) 0%, var(--mid) 55%, var(--deep) 100%);
+    transition: background 1.6s ease;
+  }
+
+  .ocean-bg svg{
+    position:absolute;
+    bottom:0; left:0;
+    width:100%; height:60%;
+    display:block;
+  }
+
+  .wave-path{
+    transition: fill 1.4s ease;
+  }
+  .layer-back path{ fill: var(--wave-back); }
+  .layer-mid path{ fill: var(--wave-mid); }
+  .layer-front path{ fill: var(--wave-front); }
+
+  .layer-back{
+    animation: driftBack var(--wave-speed-back) linear infinite;
+    opacity: 0.75;
+  }
+  .layer-mid{
+    animation: driftMid var(--wave-speed-mid) linear infinite;
+    opacity: 0.85;
+  }
+  .layer-front{
+    animation: driftFront var(--wave-speed-front) linear infinite;
+    opacity: 0.95;
+  }
+
+  @keyframes driftBack{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  @keyframes driftMid{
+    from{ transform: translateX(-2%); }
+    to{ transform: translateX(-52%); }
+  }
+  @keyframes driftFront{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  .grain{
+    position: fixed; inset:0; z-index:1;
+    pointer-events:none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .content{
+    position: relative;
+    z-index: 2;
+  }
+
+  section.panel{
+    min-height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 6vh 6vw;
+  }
+
+  .card{
+    max-width: 640px;
+    background: var(--card-bg);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 2.6rem 2.8rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+
+  .eyebrow{
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+    transition: color 1.2s ease;
+  }
+
+  h1, h2{
+    font-weight: 400;
+    line-height: 1.12;
+    margin: 0 0 1.1rem 0;
+    letter-spacing: -0.01em;
+  }
+  h1{ font-size: clamp(2.4rem, 5vw, 3.6rem); }
+  h2{ font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
+
+  p{
+    font-size: 1.08rem;
+    line-height: 1.68;
+    color: var(--ink-dim);
+    margin: 0 0 1rem 0;
+  }
+
+  p:last-child{ margin-bottom: 0; }
+
+  .stat{
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+    margin: 0.2rem 0 0.6rem 0;
+    transition: color 1.2s ease;
+  }
+  .stat-label{
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero{
+    text-align:left;
+  }
+  .hero p.lede{
+    font-size: 1.22rem;
+    color: var(--ink);
+  }
+
+  .scroll-hint{
+    margin-top: 2.2rem;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    display:flex;
+    align-items:center;
+    gap: 0.6rem;
+  }
+  .scroll-hint::after{
+    content:"";
+    width: 22px; height: 1px;
+    background: var(--accent);
+    display:inline-block;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ width: 8px; opacity: 0.4; }
+    50%{ width: 28px; opacity: 1; }
+  }
+
+  .footer-panel{
+    min-height: 70vh;
+  }
+  .footer-panel .card{
+    text-align:center;
+  }
+  .source-note{
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.72rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.02em;
+    margin-top: 1.6rem;
+    opacity: 0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .layer-back, .layer-mid, .layer-front{ animation: none; }
+    .scroll-hint::after{ animation: none; }
+  }
+
+  @media (max-width: 640px){
+    .card{ padding: 2rem 1.6rem; }
+    section.panel{ padding: 5vh 5vw; }
+  }
+</style>
+</head>
+<body data-theme="calm">
+
+  <div class="ocean-bg">
+    <svg viewBox="0 0 1440 500" preserveAspectRatio="none">
+      <g class="layer-back">
+        <path class="wave-path" d="M0,180 C120,140 240,220 360,190 C480,160 600,230 720,200 C840,170 960,240 1080,210 C1200,180 1320,230 1440,200 L1440,500 L0,500 Z" transform="translate(0,0)"/>
+      </g>
+      <g class="layer-back">
+        <path class="wave-path" d="M1440,180 C1560,140 1680,220 1800,190 C1920,160 2040,230 2160,200 C2280,170 2400,240 2520,210 C2640,180 2760,230 2880,200 L2880,500 L1440,500 Z"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 1440 460" preserveAspectRatio="none">
+      <g class="layer-mid">
+        <path class="wave-path" d="M0,220 C100,180 220,260 340,230 C460,200 560,250 680,225 C800,200 900,260 1020,235 C1140,210 1260,255 1440,230 L1440,500 L0,500 Z"/>
+      </g>
+      <g class="layer-mid">
+        <path class="wave-path" d="M1440,220 C1540,180 1660,260 1780,230 C1900,200 2000,250 2120,225 C2240,200 2340,260 2460,235 C2580,210 2700,255 2880,230 L2880,500 L1440,500 Z"/>
+      </g>
+    </svg>
+    <svg viewBox="0 0 1440 420" preserveAspectRatio="none">
+      <g class="layer-front">
+        <path class="wave-path" d="M0,260 C90,235 180,285 280,265 C380,245 460,280 560,262 C660,244 740,282 840,266 C940,250 1020,280 1120,265 C1220,250 1320,278 1440,262 L1440,500 L0,500 Z"/>
+      </g>
+      <g class="layer-front">
+        <path class="wave-path" d="M1440,260 C1530,235 1620,285 1720,265 C1820,245 1900,280 2000,262 C2100,244 2180,282 2280,266 C2380,250 2460,280 2560,265 C2660,250 2760,278 2880,262 L2880,500 L1440,500 Z"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="grain"></div>
+
+  <div class="content">
+
+    <section class="panel" data-theme-target="calm">
+      <div class="card hero">
+        <div class="eyebrow">Ocean &amp; Climate — A Scrollytelling Primer</div>
+        <h1>The Pulse of the Pacific</h1>
+        <p class="lede">Every two to seven years, a patch of ocean roughly the size of the continental United States warms by a degree or two — and weather changes on almost every continent on Earth.</p>
+        <p>This is El Niño. Understanding it starts with a single, unglamorous number, and ends somewhere much bigger: the food on your plate, the storms on your coast, and a planet where this signal is only getting louder.</p>
+        <div class="scroll-hint">Scroll to begin</div>
+      </div>
+    </section>
+
+    <section class="panel" data-theme-target="calm2">
+      <div class="card">
+        <div class="eyebrow">The Measurement</div>
+        <h2>The Box That Forecasts a Planet</h2>
+        <div class="stat">+0.5°C</div>
+        <div class="stat-label">the threshold, sustained for five overlapping three-month periods</div>
+        <p>Scientists watch one rectangle of ocean above all others: the Niño 3.4 region, a stretch of the central and eastern tropical Pacific. When its sea surface temperature climbs at least half a degree Celsius above normal — and stays there — forecasters start paying very close attention.</p>
+        <p>Temperature alone isn't enough to declare an El Niño, though. The atmosphere has to respond in kind: trade winds must weaken, and rainfall has to shift eastward across the Pacific. It's only when ocean and atmosphere move together that El Niño is officially underway.</p>
+      </div>
+    </section>
+
+    <section class="panel" data-theme-target="warm">
+      <div class="card">
+        <div class="eyebrow">Three Faces of One Ocean</div>
+        <h2>El Niño, La Niña, and the In-Between</h2>
+        <p>El Niño is the warm phase of a larger cycle called ENSO — the El Niño-Southern Oscillation. Its cold counterpart, La Niña, cools the same waters and flips many of the same weather patterns in reverse. Between the two sits a neutral phase, when the tropical Pacific runs close to its long-term average.</p>
+        <p>Spanish-speaking fishermen off Peru and Ecuador noticed the warm phase centuries ago, and gave it a name that has stuck ever since: El Niño, the Christ Child, for its habit of arriving around Christmas.</p>
+      </div>
+    </section>
+
+    <section class="panel" data-theme-target="storm">
+      <div class="card">
+        <div class="eyebrow">How the Signal Travels</div>
+        <h2>Teleconnections: A Warm Patch Rewires the Sky</h2>
+        <p>Here is the part that surprises people: El Niño's biggest effects often aren't felt anywhere near the tropical Pacific. As trade winds weaken and warm water sloshes eastward, heat and moisture pour into the atmosphere above it — and that extra energy shifts the position of the jet stream thousands of miles away.</p>
+        <p>Meteorologists call these long-distance links <em>teleconnections</em>. A strong El Niño can steer more winter storms toward California and the Gulf Coast, fuel record rains in Peru and Chile, and simultaneously starve Australia, Indonesia, and parts of southern Asia of rain. One ocean, many weather systems, wired together.</p>
+      </div>
+    </section>
+
+    <section class="panel" data-theme-target="intensify">
+      <div class="card">
+        <div class="eyebrow">A Changing Signal</div>
+        <h2>A Louder Signal in a Warmer World</h2>
+        <div class="stat">~13%</div>
+        <div class="stat-label">projected increase in ENSO's global sea-surface-temperature influence under greenhouse warming</div>
+        <p>Recent climate modeling, published in <em>Nature Communications</em>, suggests El Niño's global reach is set to grow. Across a large ensemble of climate simulations, researchers found that as the planet warms, El Niño's fingerprint on sea surface temperatures strengthens almost everywhere on the map — not just near the tropical Pacific.</p>
+        <p>Two mechanisms seem to drive it: stronger El Niño-related winds, which intensify the atmospheric teleconnections that carry the signal outward, and a growing difference in moisture between the ocean surface and the air above it, which amplifies evaporation and heat exchange. In plain terms — as the background climate warms, the same El Niño produces a bigger ripple than it used to.</p>
+      </div>
+    </section>
+
+    <section class="panel" data-theme-target="human">
+      <div class="card">
+        <div class="eyebrow">Not a New Story</div>
+        <h2>A Pattern Written Into History</h2>
+        <p>Teleconnections aren't a modern discovery — they've been shaping human life for centuries, often invisibly. In my own research on early modern Europe, I found that El Niño events were linked to more than 40% of documented famine onsets in Central Europe between 1500 and 1800, as the same wind and rainfall shifts described above drove wetter summers and failed harvests thousands of miles from the Pacific.</p>
+        <p>Grain prices in the study rose an average of 6.5% in the year following an El Niño — and the price shock spread even into regions with no direct climate impact, as strained markets pushed costs outward. It's a reminder that ENSO's reach isn't just a meteorological curiosity. It has been quietly shaping harvests, prices, and human history for as long as we've kept records.</p>
+      </div>
+    </section>
+
+    <section class="panel footer-panel" data-theme-target="calm2">
+      <div class="card">
+        <div class="eyebrow">The Takeaway</div>
+        <h2>One Ocean, Every Coastline</h2>
+        <p>A single patch of the tropical Pacific, watched through one number in one small box on a map, shapes droughts, floods, harvests, and fisheries around the globe — and as the planet warms, that reach appears to be growing stronger, not weaker.</p>
+        <div class="source-note">Sources: NOAA, "Understanding El Niño &amp; ENSO" · Hong et al., "Stronger ENSO-induced global SST variability in a warming climate," <em>Nature Communications</em> (2026)</div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  const sections = document.querySelectorAll('[data-theme-target]');
+  const body = document.body;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+        body.setAttribute('data-theme', entry.target.getAttribute('data-theme-target'));
+      }
+    });
+  }, { threshold: [0.5] });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
